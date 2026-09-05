@@ -1,0 +1,15 @@
+# Disk Monitoring
+
+Disk monitoring tracks capacity, used space, free space, utilization, read/write operations, and I/O performance.
+
+## Key Points
+
+- Understand the purpose of disk monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
