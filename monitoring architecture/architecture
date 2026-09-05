@@ -1,0 +1,15 @@
+# Monitoring Architecture
+
+Monitoring architecture collects metrics from applications and infrastructure, stores and analyzes them, visualizes results, and generates alerts.
+
+## Key Points
+
+- Understand the purpose of monitoring architecture.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
