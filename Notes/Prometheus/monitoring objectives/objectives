@@ -1,0 +1,15 @@
+# Monitoring Objectives
+
+Objectives include detecting failures, improving availability, monitoring performance, tracking resources, reducing downtime, supporting troubleshooting, and capacity planning.
+
+## Key Points
+
+- Understand the purpose of monitoring objectives.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
