@@ -1,0 +1,15 @@
+# Uptime Monitoring
+
+Uptime monitoring measures how long a system or service remains operational and detects interruptions using health checks.
+
+## Key Points
+
+- Understand the purpose of uptime monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
