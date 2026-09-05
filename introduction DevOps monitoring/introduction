@@ -1,0 +1,15 @@
+# Introduction to DevOps Monitoring
+
+DevOps monitoring continuously observes applications, infrastructure, servers, networks, and system resources to understand their health and performance.
+
+## Key Points
+
+- Understand the purpose of introduction to devops monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
