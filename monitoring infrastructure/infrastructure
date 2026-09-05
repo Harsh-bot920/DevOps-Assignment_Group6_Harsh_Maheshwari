@@ -1,0 +1,15 @@
+# Infrastructure Monitoring
+
+Infrastructure monitoring observes servers, virtual machines, containers, storage, network devices, databases, and cloud resources.
+
+## Key Points
+
+- Understand the purpose of infrastructure monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
