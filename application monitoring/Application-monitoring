@@ -1,0 +1,15 @@
+# Application Monitoring
+
+Application monitoring tracks requests, response time, errors, throughput, availability, database performance, CPU, and memory.
+
+## Key Points
+
+- Understand the purpose of application monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
