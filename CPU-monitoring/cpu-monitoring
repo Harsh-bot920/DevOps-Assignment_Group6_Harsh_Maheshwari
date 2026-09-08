@@ -1,0 +1,15 @@
+# CPU Monitoring
+
+CPU monitoring measures utilization, load, user CPU, system CPU, idle CPU, and wait time. Sustained high usage can indicate bottlenecks.
+
+## Key Points
+
+- Understand the purpose of cpu monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```

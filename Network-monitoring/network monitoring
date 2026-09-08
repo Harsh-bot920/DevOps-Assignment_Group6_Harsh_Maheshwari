@@ -1,0 +1,15 @@
+# Network Monitoring
+
+Network monitoring tracks bandwidth, traffic, packets, packet loss, latency, and network errors.
+
+## Key Points
+
+- Understand the purpose of network monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```

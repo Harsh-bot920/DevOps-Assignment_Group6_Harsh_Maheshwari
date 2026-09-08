@@ -1,0 +1,15 @@
+# Monitoring Workflow
+
+The monitoring workflow is Collect → Store → Analyze → Visualize → Alert → Respond.
+
+## Key Points
+
+- Understand the purpose of monitoring workflow.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
