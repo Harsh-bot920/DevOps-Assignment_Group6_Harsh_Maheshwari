@@ -1,0 +1,15 @@
+# Memory Monitoring
+
+Memory monitoring tracks total, used, available, free, cached memory, and swap usage. High usage can indicate leaks or insufficient RAM.
+
+## Key Points
+
+- Understand the purpose of memory monitoring.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
