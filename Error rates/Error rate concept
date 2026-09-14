@@ -1,0 +1,15 @@
+# Error Rate Concepts
+
+Error rate is the percentage of failed requests. Error Rate (%) = Failed Requests / Total Requests × 100.
+
+## Key Points
+
+- Understand the purpose of error rate concepts.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
