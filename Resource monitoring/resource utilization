@@ -1,0 +1,15 @@
+# Resource Utilization
+
+Resource utilization measures consumption of CPU, memory, disk, network, storage, and container resources.
+
+## Key Points
+
+- Understand the purpose of resource utilization.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```

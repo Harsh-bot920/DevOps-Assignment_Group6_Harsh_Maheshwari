@@ -1,0 +1,15 @@
+# KPI Concepts
+
+KPIs are measurable values used to evaluate system or service performance. Examples include availability, response time, error rate, throughput, latency, and utilization.
+
+## Key Points
+
+- Understand the purpose of kpi concepts.
+- Identify relevant monitoring measurements.
+- Use monitoring information for detection, analysis, and troubleshooting.
+
+## Example Flow
+
+```text
+System → Collect Metrics → Analyze → Visualize → Alert → Respond
+```
