@@ -1,311 +1,57 @@
-# DevOps Lifecycle: Monitoring Phase
+# Simple AI Chat — React frontend + existing backend
 
-## 📚 Introduction
+This project keeps the Express/MongoDB/OpenRouter backend and adds a simple React chat interface.
 
-**Monitoring** is one of the important phases of the DevOps lifecycle. It involves continuously observing applications, servers, infrastructure, and services after they are deployed.
+## Features
 
-The main purpose of monitoring is to understand whether the system is working correctly, identify problems quickly, and maintain good performance and availability.
+- Login and signup using the existing `/user/login` and `/user/signup` endpoints.
+- ChatGPT-style chat layout built with ordinary React components and CSS.
+- Model dropdown for OpenRouter models.
+- Logged-in chats continue to be stored in MongoDB and appear in Recent chats.
+- Guest chat uses `POST /message/guest`. Guest conversation history is held only in React state while the tab is open. That endpoint does not create MongoDB chat/message records.
+- Readable model answers with Markdown headings, lists, tables, links and formatted code blocks.
 
----
+## 1. Set up the backend
 
-## 🔄 Where Monitoring Fits in DevOps
+Requirements: Node.js 20 or newer, MongoDB, Redis, and an OpenRouter API key.
 
-The DevOps lifecycle can be represented as:
+1. Open a terminal in the project root (`chatgptbackend`).
+2. Copy `.env.example` to `.env`.
+3. Put your real values in `.env`:
+   - `MONGO_URL`: your MongoDB connection string.
+   - `REDIS_URL`: your Redis connection string.
+   - `JWT_SECRET`: a long random secret.
+   - `OPENROUTER_API_KEY`: your OpenRouter API key.
+   - `DEFAULT_AI_MODEL`: `openrouter/free` or another model ID you use.
+4. Install packages and start the backend:
 
-```text
-Plan
-  ↓
-Code
-  ↓
-Build
-  ↓
-Test
-  ↓
-Release
-  ↓
-Deploy
-  ↓
-Operate
-  ↓
-Monitor
-  ↓
-Feedback
-  ↓
-Plan
+   ```bash
+   npm install
+   npm run dev
+   ```
+
+The backend listens on `http://127.0.0.1:3000` (also reachable as `http://localhost:3000`). Check `http://localhost:3000/health` for a simple health response.
+
+## 2. Set up the React frontend
+
+Open a second terminal and run:
+
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
-Monitoring provides feedback that can be used to improve the next development and deployment cycle.
+Open the URL printed by Vite (normally `http://127.0.0.1:5173`). The backend CORS configuration allows both `127.0.0.1:5173` and `localhost:5173`.
 
----
+If the backend is not running on port 3000, copy `frontend/.env.example` to `frontend/.env` and set `VITE_API_BASE_URL` to your backend URL, then restart Vite.
 
-## 🎯 Objectives of Monitoring
+## How guest chat works
 
-The main objectives of DevOps monitoring are:
+Guest message history is kept in a React state variable. The frontend sends the prior messages to `/message/guest` so the model can respond in context. The endpoint calls OpenRouter but does not call `Chat.create()`, `Message.create()`, or any MongoDB write method. Closing or refreshing the page clears the guest conversation. The guest rate limiter uses Redis, not the chat database. The model provider may still process prompts under its own service and privacy policies, so do not send secrets or sensitive personal information to guest chat.
 
-- Detect problems and failures quickly.
-- Monitor application performance.
-- Monitor server and infrastructure health.
-- Identify performance bottlenecks.
-- Reduce application downtime.
-- Improve system reliability.
-- Monitor resource utilization.
-- Generate alerts when problems occur.
-- Provide useful feedback to the development team.
+## Notes
 
----
-
-## 🔍 What Do We Monitor?
-
-### 1. Application Monitoring
-
-We monitor the health and performance of applications.
-
-Examples:
-
-- Response time
-- Request rate
-- Error rate
-- Application availability
-- Number of active users
-
-### 2. Server Monitoring
-
-We monitor the physical or virtual servers running the application.
-
-Important metrics include:
-
-- CPU usage
-- Memory usage
-- Disk usage
-- Network usage
-- Server uptime
-
-### 3. Database Monitoring
-
-Database monitoring helps identify database-related problems.
-
-Examples:
-
-- Query performance
-- Database connections
-- Storage usage
-- Query errors
-- Response time
-
-### 4. Network Monitoring
-
-Network monitoring checks the communication between different systems.
-
-Examples:
-
-- Network traffic
-- Latency
-- Packet loss
-- Bandwidth usage
-- Connection failures
-
-### 5. Log Monitoring
-
-Logs contain information about what is happening inside an application or system.
-
-Examples:
-
-```text
-Application started successfully
-User login successful
-Database connection failed
-Server error
-Payment request failed
-```
-
-Analyzing logs helps developers and administrators find the cause of problems.
-
----
-
-## 📊 Important Monitoring Metrics
-
-| Metric | Meaning |
-|---|---|
-| CPU Usage | Percentage of CPU being used |
-| Memory Usage | Amount of RAM being used |
-| Disk Usage | Amount of storage being used |
-| Network Traffic | Amount of data transmitted |
-| Response Time | Time taken to respond to a request |
-| Error Rate | Percentage of failed requests |
-| Uptime | How long a service remains available |
-| Throughput | Amount of work handled by the system |
-
----
-
-## 🚨 Alerts
-
-Monitoring systems can automatically generate alerts when a problem occurs.
-
-For example:
-
-```text
-CPU Usage = 90%
-        ↓
-Threshold = 80%
-        ↓
-Threshold exceeded
-        ↓
-Generate Alert
-        ↓
-DevOps Team investigates
-```
-
-Common alerts include:
-
-- High CPU usage
-- High memory usage
-- Server down
-- Application unavailable
-- High error rate
-- Database failure
-- Disk space running low
-
----
-
-## 🛠️ Popular Monitoring Tools
-
-### Prometheus
-
-Prometheus is an open-source monitoring and alerting tool.
-
-It collects and stores metrics from applications and infrastructure.
-
-### Grafana
-
-Grafana is used to visualize monitoring data through dashboards, charts, and graphs.
-
-### ELK Stack
-
-The ELK Stack is commonly used for log management.
-
-It consists of:
-
-- Elasticsearch
-- Logstash
-- Kibana
-
-### Nagios
-
-Nagios is a monitoring system used to monitor servers, networks, and applications.
-
-### Datadog
-
-Datadog is a cloud-based monitoring and observability platform.
-
----
-
-## 📈 Prometheus + Grafana
-
-A common DevOps monitoring setup is:
-
-```text
-Application / Server
-        ↓
-     Metrics
-        ↓
-    Prometheus
-        ↓
-      Grafana
-        ↓
-   Dashboard
-        ↓
-    DevOps Team
-```
-
-**Prometheus** collects and stores metrics.
-
-**Grafana** displays those metrics using dashboards and visualizations.
-
----
-
-## 🧑‍💻 Example
-
-Suppose a web application normally uses around **40% CPU**.
-
-If CPU usage suddenly increases to **90%**, the monitoring system detects the increase.
-
-```text
-Normal CPU
-40%
- ↓
-Traffic increases
- ↓
-CPU = 90%
- ↓
-Monitoring detects problem
- ↓
-Alert generated
- ↓
-DevOps team investigates
- ↓
-Problem resolved
-```
-
-This helps prevent the application from becoming unavailable.
-
----
-
-## 🔁 Monitoring and Feedback
-
-Monitoring is not only about finding failures.
-
-It also provides feedback for improving the application.
-
-For example:
-
-```text
-Monitoring
-     ↓
-Performance Data
-     ↓
-Analysis
-     ↓
-Identify Problem
-     ↓
-Development Team
-     ↓
-Code / Infrastructure Improvement
-     ↓
-New Deployment
-     ↓
-Monitoring Again
-```
-
-This creates a **continuous feedback loop** in DevOps.
-
----
-
-## ✅ Advantages of Monitoring
-
-- Early detection of failures
-- Reduced downtime
-- Improved application performance
-- Better resource management
-- Faster troubleshooting
-- Improved reliability
-- Better user experience
-- Data-driven decision making
-
----
-
-## 📝 Key Points to Remember
-
-1. Monitoring means continuously observing systems and applications.
-2. It is an important part of the DevOps lifecycle.
-3. We monitor applications, servers, databases, networks, and logs.
-4. Important metrics include CPU, memory, disk, network, response time, and error rate.
-5. Alerts notify teams when predefined thresholds are exceeded.
-6. Prometheus is commonly used for metrics collection.
-7. Grafana is commonly used for visualization.
-8. Monitoring provides feedback for continuous improvement.
-
----
-
-## 🎓 Simple Definition
-
-> **DevOps Monitoring is the continuous process of observing applications, infrastructure, and services to detect problems, measure performance, generate alerts, and provide feedback for continuous improvement.**
+- The backend `.env` file is intentionally not included in this project archive. Copy `.env.example` and restore your own secret values locally.
+- Model providers, free tiers, availability and rate limits can change. The model list is in `config/modelOptions.js`; update IDs there when needed.
+- This is a straightforward learning project, not a production-ready authentication system. Before public deployment, use HTTPS, secure cookie settings, stricter CORS, robust rate limiting, and monitoring.
